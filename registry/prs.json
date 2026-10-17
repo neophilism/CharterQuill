@@ -4,13 +4,15 @@
   "roadmapVersion": 2,
   "planVerified": true,
   "plannedPrCount": 14,
-  "observedAt": "2026-10-17T00:42:26Z",
+  "observedAt": "2026-10-17T02:52:23.977Z",
   "units": [
     {
       "id": "CORP-001",
       "title": "Corporate application foundation",
       "origin": "original",
-      "prs": [],
+      "prs": [
+        1
+      ],
       "dependsOn": [],
       "externalDependencies": [
         {
@@ -27,7 +29,7 @@
         "Profile, unsafe-share input, dependency and shared registry tests."
       ],
       "specification": "docs/prs/CORP-001.md",
-      "implementationStatus": "foundation-partial",
+      "implementationStatus": "implemented",
       "operationalAcceptance": "unverified"
     },
     {
@@ -392,5 +394,18 @@
       "operationalAcceptance": "unverified"
     }
   ],
-  "pullRequests": []
+  "pullRequests": [
+    {
+      "id": 4896656838,
+      "number": 1,
+      "title": "CORP-001: Establish CharterQuill and shared engine contracts",
+      "state": "open",
+      "url": "https://github.com/neophilism/CharterQuill/pull/1",
+      "createdAt": "2026-10-17T02:50:56Z",
+      "updatedAt": "2026-10-17T02:50:56Z",
+      "mergedAt": null,
+      "closedAt": null,
+      "draft": false
+    }
+  ]
 }
