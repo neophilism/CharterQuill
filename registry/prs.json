@@ -1,0 +1,411 @@
+{
+  "schemaVersion": 1,
+  "repository": "neophilism/CharterQuill",
+  "roadmapVersion": 2,
+  "planVerified": true,
+  "plannedPrCount": 14,
+  "observedAt": "2026-10-17T02:52:23.977Z",
+  "units": [
+    {
+      "id": "CORP-001",
+      "title": "Corporate application foundation",
+      "origin": "original",
+      "prs": [
+        1
+      ],
+      "dependsOn": [],
+      "externalDependencies": [
+        {
+          "repository": "neophilism/Distributed-Governance-Engine",
+          "unitId": "DCE-001"
+        }
+      ],
+      "externalPrerequisites": [],
+      "scope": "Create thin organization profile, exact-share units, policy fixtures, canonical registry and engine consumer contracts.",
+      "acceptanceCriteria": [
+        "Share-weight default, private mode and anchoring-off default are executable without copying engine internals."
+      ],
+      "requiredTests": [
+        "Profile, unsafe-share input, dependency and shared registry tests."
+      ],
+      "specification": "docs/prs/CORP-001.md",
+      "implementationStatus": "implemented",
+      "operationalAcceptance": "unverified"
+    },
+    {
+      "id": "CORP-002",
+      "title": "Organization rooms and private engine integration",
+      "origin": "original",
+      "prs": [],
+      "dependsOn": [
+        "CORP-001"
+      ],
+      "externalDependencies": [
+        {
+          "repository": "neophilism/Distributed-Governance-Engine",
+          "unitId": "DCE-003"
+        },
+        {
+          "repository": "neophilism/Distributed-Governance-Engine",
+          "unitId": "DCE-038"
+        }
+      ],
+      "externalPrerequisites": [],
+      "scope": "Build board/committee/shareholder rooms and integrate engine identity, encrypted collaboration, editor and shared admin.",
+      "acceptanceCriteria": [
+        "Each room has explicit authorized recipients; corporate content does not appear in public discovery or provider logs."
+      ],
+      "requiredTests": [
+        "Consumer contract, cross-organization, device authorization and private rendering tests."
+      ],
+      "specification": "docs/prs/CORP-002.md",
+      "implementationStatus": "planned",
+      "operationalAcceptance": "unverified"
+    },
+    {
+      "id": "CORP-003",
+      "title": "Entity rules and governing instrument profiles",
+      "origin": "original",
+      "prs": [],
+      "dependsOn": [
+        "CORP-002"
+      ],
+      "externalDependencies": [
+        {
+          "repository": "neophilism/Distributed-Governance-Engine",
+          "unitId": "DCE-010"
+        }
+      ],
+      "externalPrerequisites": [],
+      "scope": "Model corporation/LLC/cooperative profiles, bylaws, reserved matters, board vs member capacity and configurable governing rules.",
+      "acceptanceCriteria": [
+        "Rules identify source/authority and do not claim a jurisdiction-complete legal validity check."
+      ],
+      "requiredTests": [
+        "Profile goldens, unauthorized override, source-version migration and rollback tests."
+      ],
+      "specification": "docs/prs/CORP-003.md",
+      "implementationStatus": "planned",
+      "operationalAcceptance": "unverified"
+    },
+    {
+      "id": "CORP-004",
+      "title": "Share ledger, classes and record dates",
+      "origin": "original",
+      "prs": [],
+      "dependsOn": [
+        "CORP-003"
+      ],
+      "externalDependencies": [
+        {
+          "repository": "neophilism/Distributed-Governance-Engine",
+          "unitId": "DCE-011"
+        }
+      ],
+      "externalPrerequisites": [],
+      "scope": "Import and reconcile authorized share records, fractional fixed-point units, classes, voting multipliers, beneficial-owner references and record-date snapshots.",
+      "acceptanceCriteria": [
+        "Transfers after the record date do not change active ballots; ownership does not automatically imply equal voting rights across classes."
+      ],
+      "requiredTests": [
+        "Large/fractional quantities, duplicate owner imports, rounding denial, transfers, mixed classes and reconciliation fixtures."
+      ],
+      "specification": "docs/prs/CORP-004.md",
+      "implementationStatus": "planned",
+      "operationalAcceptance": "unverified"
+    },
+    {
+      "id": "CORP-005",
+      "title": "Director, shareholder and proxy authority",
+      "origin": "original",
+      "prs": [],
+      "dependsOn": [
+        "CORP-004"
+      ],
+      "externalDependencies": [
+        {
+          "repository": "neophilism/Distributed-Governance-Engine",
+          "unitId": "DCE-011"
+        },
+        {
+          "repository": "neophilism/Distributed-Governance-Engine",
+          "unitId": "DCE-012"
+        }
+      ],
+      "externalPrerequisites": [],
+      "scope": "Implement authenticated proxies, custodian/beneficial-owner attribution, revocation, direct-vote precedence, expiry and delegated signatory capacity.",
+      "acceptanceCriteria": [
+        "A principal entitlement can be exercised only once; delegation cycles and over-allocation fail; staff roles cannot forge ownership."
+      ],
+      "requiredTests": [
+        "Proxy/direct race, cycle, revocation at cutoff, split allocation, forged authority and double-count tests."
+      ],
+      "specification": "docs/prs/CORP-005.md",
+      "implementationStatus": "planned",
+      "operationalAcceptance": "unverified"
+    },
+    {
+      "id": "CORP-006",
+      "title": "Selective clause unlock and confidential electorate",
+      "origin": "original",
+      "prs": [],
+      "dependsOn": [
+        "CORP-005"
+      ],
+      "externalDependencies": [
+        {
+          "repository": "neophilism/Distributed-Governance-Engine",
+          "unitId": "DCE-018"
+        }
+      ],
+      "externalPrerequisites": [],
+      "scope": "Open selected clauses to selected classes or committees with read/propose/discuss/vote rights and timed expirations; keep remaining text restricted.",
+      "acceptanceCriteria": [
+        "Nested amendments, redlines, references and exports cannot reveal or mutate locked clauses."
+      ],
+      "requiredTests": [
+        "Section capability matrix, expired unlock, hidden-reference leakage and multi-clause proposal tests."
+      ],
+      "specification": "docs/prs/CORP-006.md",
+      "implementationStatus": "planned",
+      "operationalAcceptance": "unverified"
+    },
+    {
+      "id": "CORP-007",
+      "title": "Corporate quorum and multi-class resolutions",
+      "origin": "original",
+      "prs": [],
+      "dependsOn": [
+        "CORP-004",
+        "CORP-005",
+        "CORP-006"
+      ],
+      "externalDependencies": [
+        {
+          "repository": "neophilism/Distributed-Governance-Engine",
+          "unitId": "DCE-013"
+        }
+      ],
+      "externalPrerequisites": [],
+      "scope": "Configure quorum by represented shares or heads, approval by eligible/cast/present weight, class vetoes, supermajorities, abstentions and broker/nonvotes where applicable.",
+      "acceptanceCriteria": [
+        "Overall approval never bypasses a required class approval; every denominator is named and reproducible; Board votes can use equal-person profiles."
+      ],
+      "requiredTests": [
+        "Boundary matrices, record-date share exactness, class failures, ties, nonvote categories and mixed-electorate tests."
+      ],
+      "specification": "docs/prs/CORP-007.md",
+      "implementationStatus": "planned",
+      "operationalAcceptance": "unverified"
+    },
+    {
+      "id": "CORP-008",
+      "title": "Meetings, written consents and reserved matters",
+      "origin": "original",
+      "prs": [],
+      "dependsOn": [
+        "CORP-007"
+      ],
+      "externalDependencies": [
+        {
+          "repository": "neophilism/Distributed-Governance-Engine",
+          "unitId": "DCE-014"
+        }
+      ],
+      "externalPrerequisites": [],
+      "scope": "Add notices, agendas, meeting/written-consent decisions, submission/seconding options, attachments, effective dates and board/member sequencing.",
+      "acceptanceCriteria": [
+        "Decision records preserve delivery/notice and required class/board/member stages under the configured rule profile."
+      ],
+      "requiredTests": [
+        "Notice deadline, missing prerequisite, staged approvals, duplicate meeting close and state-transition tests."
+      ],
+      "specification": "docs/prs/CORP-008.md",
+      "implementationStatus": "planned",
+      "operationalAcceptance": "unverified"
+    },
+    {
+      "id": "CORP-009",
+      "title": "Conflicts, recusals and sensitive disclosures",
+      "origin": "original",
+      "prs": [],
+      "dependsOn": [
+        "CORP-008"
+      ],
+      "externalDependencies": [
+        {
+          "repository": "neophilism/Distributed-Governance-Engine",
+          "unitId": "DCE-018"
+        }
+      ],
+      "externalPrerequisites": [],
+      "scope": "Model interests, recusals, exclusion rules, designated confidential counsel access and evidence retention without promising privilege by software alone.",
+      "acceptanceCriteria": [
+        "Recused weight is treated under the disclosed policy; changed eligibility requires a fresh snapshot or explicit procedure."
+      ],
+      "requiredTests": [
+        "Conflict leak, weight denominator, recusal changes, unauthorized counsel access and retention tests."
+      ],
+      "specification": "docs/prs/CORP-009.md",
+      "implementationStatus": "planned",
+      "operationalAcceptance": "unverified"
+    },
+    {
+      "id": "CORP-010",
+      "title": "Execution signatures, minutes and closing packages",
+      "origin": "original",
+      "prs": [],
+      "dependsOn": [
+        "CORP-008",
+        "CORP-009"
+      ],
+      "externalDependencies": [
+        {
+          "repository": "neophilism/Distributed-Governance-Engine",
+          "unitId": "DCE-027"
+        }
+      ],
+      "externalPrerequisites": [],
+      "scope": "Tailor execution capacity, corporate seals if configured, signature order, evidence certificates, resolutions, minute books and document bundles.",
+      "acceptanceCriteria": [
+        "A vote is distinct from execution; signer capacity and exact frozen bytes are recorded; later signature appendices cannot alter signed text."
+      ],
+      "requiredTests": [
+        "Wrong-capacity signer, changed PDF, partial execution, cancellation, mass-consent appendix and independent package verification tests."
+      ],
+      "specification": "docs/prs/CORP-010.md",
+      "implementationStatus": "planned",
+      "operationalAcceptance": "unverified"
+    },
+    {
+      "id": "CORP-011",
+      "title": "Audit, retention, legal hold and portability",
+      "origin": "original",
+      "prs": [],
+      "dependsOn": [
+        "CORP-010"
+      ],
+      "externalDependencies": [
+        {
+          "repository": "neophilism/Distributed-Governance-Engine",
+          "unitId": "DCE-023"
+        },
+        {
+          "repository": "neophilism/Distributed-Governance-Engine",
+          "unitId": "DCE-035"
+        }
+      ],
+      "externalPrerequisites": [],
+      "scope": "Add retention schedules, legal holds, access logs, encrypted archives, export boundaries, account offboarding and optional organizational anchoring.",
+      "acceptanceCriteria": [
+        "Legal holds prevent destruction under policy; anchoring stays off unless explicitly enabled; exported private data has a defined recipient/key boundary."
+      ],
+      "requiredTests": [
+        "Hold/delete conflict, removed-member access, key-loss/restore, metadata leak and cross-tenant export tests."
+      ],
+      "specification": "docs/prs/CORP-011.md",
+      "implementationStatus": "planned",
+      "operationalAcceptance": "unverified"
+    },
+    {
+      "id": "CORP-012",
+      "title": "Enterprise identity, billing and integrations",
+      "origin": "original",
+      "prs": [],
+      "dependsOn": [
+        "CORP-011"
+      ],
+      "externalDependencies": [
+        {
+          "repository": "neophilism/Distributed-Governance-Engine",
+          "unitId": "DCE-030"
+        },
+        {
+          "repository": "neophilism/Distributed-Governance-Engine",
+          "unitId": "DCE-038"
+        }
+      ],
+      "externalPrerequisites": [],
+      "scope": "Integrate SSO/SCIM, licensed seat/organization billing, cap-table provider adapters, scoped webhooks and optional e-sign provider adapters.",
+      "acceptanceCriteria": [
+        "Providers cannot directly change frozen ownership snapshots or votes; webhooks are signed/idempotent; enterprise grants use shared entitlements."
+      ],
+      "requiredTests": [
+        "SSO audience, SCIM deprovision, forged webhook, cap-table mismatch, provider retry and billing reconciliation tests."
+      ],
+      "specification": "docs/prs/CORP-012.md",
+      "implementationStatus": "planned",
+      "operationalAcceptance": "unverified"
+    },
+    {
+      "id": "CORP-013",
+      "title": "Corporate unified admin and role walkthroughs",
+      "origin": "original",
+      "prs": [],
+      "dependsOn": [
+        "CORP-012"
+      ],
+      "externalDependencies": [
+        {
+          "repository": "neophilism/Distributed-Governance-Engine",
+          "unitId": "DCE-028"
+        },
+        {
+          "repository": "neophilism/Distributed-Governance-Engine",
+          "unitId": "DCE-031"
+        }
+      ],
+      "externalPrerequisites": [],
+      "scope": "Expose governed parameters and change simulation for secretary, director, shareholder and counsel roles with anchored tutorials and reproducible reports.",
+      "acceptanceCriteria": [
+        "Secretary can preview a resolution before opening it; shareholder tour shows only actual unlocked clauses and their frozen vote weight."
+      ],
+      "requiredTests": [
+        "Role matrix, active-ballot rule-change denial, mobile/keyboard tour, weighted report and admin audit tests."
+      ],
+      "specification": "docs/prs/CORP-013.md",
+      "implementationStatus": "planned",
+      "operationalAcceptance": "unverified"
+    },
+    {
+      "id": "CORP-014",
+      "title": "Corporate production release and recovery",
+      "origin": "original",
+      "prs": [],
+      "dependsOn": [
+        "CORP-013"
+      ],
+      "externalDependencies": [
+        {
+          "repository": "neophilism/Distributed-Governance-Engine",
+          "unitId": "DCE-039"
+        }
+      ],
+      "externalPrerequisites": [],
+      "scope": "Deploy isolated corporate configuration/frontend, execute real record-date proxy/class-approval and signing journeys and publish evidence.",
+      "acceptanceCriteria": [
+        "Verified private multiuser resolution lifecycle, immutable execution artifacts and restore/reconciliation pass on actual deployed commit."
+      ],
+      "requiredTests": [
+        "Current-head full gates, E2EE canaries, cross-tenant browser smoke, load/restore and exact artifact verification; human review follows deployment."
+      ],
+      "specification": "docs/prs/CORP-014.md",
+      "implementationStatus": "planned",
+      "operationalAcceptance": "unverified"
+    }
+  ],
+  "pullRequests": [
+    {
+      "id": 4896656838,
+      "number": 1,
+      "title": "CORP-001: Establish CharterQuill and shared engine contracts",
+      "state": "open",
+      "url": "https://github.com/neophilism/CharterQuill/pull/1",
+      "createdAt": "2026-10-17T02:50:56Z",
+      "updatedAt": "2026-10-17T02:50:56Z",
+      "mergedAt": null,
+      "closedAt": null,
+      "draft": false
+    }
+  ]
+}
